@@ -6,7 +6,7 @@ At Meshy, support engineers sit between our API customers and the engineering te
 
 This repo is a small mock of an API like ours: customers create 3D generation tasks with an API key, then poll each task until it finishes. It is a simplified stand-in, not our real code, and every customer, key, and log line in it is made up.
 
-Three customer tickets are waiting in [`tickets/`](tickets/). For each one, work out what is going on, fix it if it needs fixing, and write the reply you would send the customer.
+Three customer tickets are waiting in [`tickets/`](tickets/). For each one, work out what is going on, fix it if it needs fixing, and write the reply you would send the customer. You can change code and open a pull request, but you can't deploy: engineering reviews and ships your fix. All times are UTC.
 
 - **Time:** about 2 hours. Please don't spend more than 3. Partial answers are fine; tell us what you would do next.
 - **AI tools:** use whatever you normally use (Claude Code, Cursor, Codex, ChatGPT, anything). We expect it. What we care about is that you understand and check what it gives you.
@@ -17,14 +17,16 @@ Three customer tickets are waiting in [`tickets/`](tickets/). For each one, work
 1. On this repo's GitHub page, click **Use this template** → **Create a new repository**.
 2. Owner: your personal account. Visibility: **Private**. Name it anything.
 3. Clone your new repo and create a branch: `git checkout -b solution`
-4. Install and run (Node 20 or newer):
+4. Install and run (Node 22.12 or newer):
 
    ```bash
-   npm install
-   npm start          # mock API on http://localhost:3000
+   npm ci
+   npm run dev        # mock API on http://localhost:3000, restarts when you edit code
    npm test
    npm run typecheck
    ```
+
+   Port 3000 busy? Use `PORT=3001 npm run dev`. The local API enforces the same rate limit as production (5 requests per second per key), so a quick loop of curl calls will get some 429s.
 
 5. Try a request:
 
@@ -39,20 +41,19 @@ Three customer tickets are waiting in [`tickets/`](tickets/). For each one, work
 
 ## Submitting
 
-1. Commit as you go, push your branch, and open a pull request from `solution` into `main` **in your own repo**.
-2. Fill in [`ANSWERS.md`](ANSWERS.md) as part of the same PR.
-3. If you used an agent instructions file (`CLAUDE.md`, `AGENTS.md`, `.cursorrules`, ...), commit it too.
-4. In your repo, go to **Settings → Collaborators → Add people** and add `BoogieJie`.
-5. Reply to the email with the link to your pull request within 7 days.
+1. **Add `BoogieJie` as a collaborator** on your repo (**Settings → Collaborators → Add people**). Your repo is private, so without this we can't see your pull request.
+2. Fill in [`ANSWERS.md`](ANSWERS.md). If you used an agent instructions file (`CLAUDE.md`, `AGENTS.md`, `.cursorrules`, ...), commit it too.
+3. Push your branch and open a pull request from `solution` into `main` **in your own repo**.
+4. Reply to the email with the link to your pull request within 7 days.
 
 ## What we look at
 
 - Finding the real cause, backed by evidence from the code or the logs.
-- Fixes that are small, correct, and tested.
+- Fixes that are small, correct, and tested. "No code change needed, and here's why" is a valid answer; add tests only for code you change.
 - Replies a customer would be glad to get: clear, honest, and specific.
-- Judgment: what is urgent, and what isn't a bug at all.
+- Judgment: what is urgent, what isn't a bug at all, and anything you noticed beyond the tickets.
 
-We are not looking for refactors, new features, or polish beyond the tickets.
+We are not looking for refactors, new features, or polish beyond the tickets. Don't worry about `npm audit` output or other dependency housekeeping.
 
 ## Project layout
 
@@ -70,7 +71,7 @@ We are not looking for refactors, new features, or polish beyond the tickets.
 
 ### Request log format
 
-One JSON object per line, one line per request. `npm start` prints the same format to stdout.
+One JSON object per line, one line per request. The local server prints the same format to stdout. Request bodies (including prompts) are not logged.
 
 | Field | Meaning |
 |---|---|
@@ -78,8 +79,8 @@ One JSON object per line, one line per request. `npm start` prints the same form
 | `request_id` | Also returned to the caller in the `X-Request-Id` header |
 | `method`, `path`, `status`, `latency_ms` | The request and how we answered it |
 | `key_prefix` | First 11 characters of the API key used |
-| `team`, `user` | The team the key belongs to, and the user who created the key |
-| `task_id` | Task created (POST) or read (GET) |
+| `team`, `user` | The team the key belongs to, and the user who created the key. This is the key's owner, not necessarily the person who sent the request. |
+| `task_id` | Task created (POST) or read (GET). Empty on requests rejected before they reach the route (401, 429); use `path` for those. |
 | `task_status` | Task status returned by a GET |
 | `error` | Internal error message, only on 5xx |
 
