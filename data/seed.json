@@ -1,0 +1,33 @@
+{
+  "teams": [
+    { "id": "team_northwind", "name": "Northwind Games" },
+    { "id": "team_lumen", "name": "Lumen Labs" },
+    { "id": "team_polyform", "name": "Polyform Studio" },
+    { "id": "team_kestrel", "name": "Kestrel VR" },
+    { "id": "team_oakridge", "name": "Oakridge Edu" }
+  ],
+  "members": [
+    { "teamId": "team_northwind", "userId": "u_dana", "email": "dana@northwind.example", "role": "owner", "status": "active" },
+    { "teamId": "team_northwind", "userId": "u_lee", "email": "lee@northwind.example", "role": "member", "status": "active" },
+    { "teamId": "team_northwind", "userId": "u_bob", "email": "bob@contractor.example", "role": "member", "status": "removed", "removedAt": "2026-10-18T17:02:11.000Z" },
+    { "teamId": "team_lumen", "userId": "u_ari", "email": "ari@lumenlabs.example", "role": "owner", "status": "active" },
+    { "teamId": "team_polyform", "userId": "u_sam", "email": "sam@polyform.example", "role": "owner", "status": "active" },
+    { "teamId": "team_kestrel", "userId": "u_kai", "email": "kai@kestrelvr.example", "role": "owner", "status": "active" },
+    { "teamId": "team_oakridge", "userId": "u_jo", "email": "jo@oakridge.example", "role": "owner", "status": "active" }
+  ],
+  "apiKeys": [
+    { "key": "msy_nw_d4n8Qe71VbKx3LpR0sTz", "teamId": "team_northwind", "createdBy": "u_dana", "createdAt": "2026-06-02T15:20:00.000Z" },
+    { "key": "msy_nw_l33kWm52HcJ8yNf6aGd", "teamId": "team_northwind", "createdBy": "u_lee", "createdAt": "2026-08-11T09:41:00.000Z" },
+    { "key": "msy_nw_b0b4Xc81kPq2Lm9Zt5Rv", "teamId": "team_northwind", "createdBy": "u_bob", "createdAt": "2026-09-03T13:05:00.000Z" },
+    { "key": "msy_lm_4r1sPd93TgVb6Hn2QwE", "teamId": "team_lumen", "createdBy": "u_ari", "createdAt": "2026-05-19T18:30:00.000Z" },
+    { "key": "msy_pf_7Hq2Ys40NeRc8Ku1DfL", "teamId": "team_polyform", "createdBy": "u_sam", "createdAt": "2026-07-27T16:12:00.000Z" },
+    { "key": "msy_kv_k41xBn27WjLs5Pm9TcA", "teamId": "team_kestrel", "createdBy": "u_kai", "createdAt": "2026-04-08T20:55:00.000Z" },
+    { "key": "msy_oe_j0eRt64MvQz1Xd8HkSb", "teamId": "team_oakridge", "createdBy": "u_jo", "createdAt": "2026-09-29T14:00:00.000Z" }
+  ],
+  "tasks": [
+    { "id": "tsk_lm_chair01", "teamId": "team_lumen", "createdBy": "u_ari", "type": "text-to-3d", "input": { "prompt": "mid-century lounge chair, walnut" }, "createdAt": "2026-10-15T16:04:00.000Z" },
+    { "id": "tsk_nw_tower01", "teamId": "team_northwind", "createdBy": "u_dana", "type": "text-to-3d", "input": { "prompt": "stone watchtower, low poly" }, "createdAt": "2026-10-15T18:22:00.000Z" },
+    { "id": "tsk_kv_helmet01", "teamId": "team_kestrel", "createdBy": "u_kai", "type": "text-to-3d", "input": { "prompt": "sci-fi pilot helmet" }, "createdAt": "2026-10-16T11:47:00.000Z" },
+    { "id": "tsk_pf_lamp01", "teamId": "team_polyform", "createdBy": "u_sam", "type": "text-to-3d", "input": { "prompt": "brass desk lamp" }, "createdAt": "2026-10-16T21:10:00.000Z" }
+  ]
+}
