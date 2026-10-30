@@ -1,7 +1,6 @@
 # Answers
 
 **Name:**
-**Time spent:**
 
 ## Ticket 1: Remesh returns 500
 

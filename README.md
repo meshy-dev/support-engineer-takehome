@@ -8,7 +8,7 @@ This repo is a small mock of an API like ours: customers create 3D generation ta
 
 Three customer tickets are waiting in [`tickets/`](tickets/). For each one, work out what is going on, fix it if it needs fixing, and write the reply you would send the customer. You can change code and open a pull request, but you can't deploy: engineering reviews and ships your fix. All times are UTC.
 
-- **Time:** about 2 hours. Please don't spend more than 3. Partial answers are fine; tell us what you would do next.
+- **Partial answers:** fine. Tell us what you would do next.
 - **AI tools:** use whatever you normally use (Claude Code, Cursor, Codex, ChatGPT, anything). We expect it. What we care about is that you understand and check what it gives you.
 - **Questions:** reply to the email you got this from.
 
@@ -44,7 +44,7 @@ Three customer tickets are waiting in [`tickets/`](tickets/). For each one, work
 1. **Add `BoogieJie` as a collaborator** on your repo (**Settings → Collaborators → Add people**). Your repo is private, so without this we can't see your pull request.
 2. Fill in [`ANSWERS.md`](ANSWERS.md). If you used an agent instructions file (`CLAUDE.md`, `AGENTS.md`, `.cursorrules`, ...), commit it too.
 3. Push your branch and open a pull request from `solution` into `main` **in your own repo**.
-4. Reply to the email with the link to your pull request within 7 days.
+4. Reply to the email you got this from with the link to your pull request.
 
 ## What we look at
 
